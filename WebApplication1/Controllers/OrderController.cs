@@ -41,10 +41,10 @@ namespace WebApplication1.Controllers
 
             var orderId = orderRepository.Save(order);
 
-            return RedirectToAction("ConfirmOrder", new { Id = orderId });
+            return RedirectToAction("Confirm", new { Id = orderId });
         }
 
-        public ActionResult ConfirmOrder(int? id)
+        public ActionResult Confirm(int? id)
         {
             var dishRepository = new DishRepository();
             var orderRepository = new OrderRepository();
