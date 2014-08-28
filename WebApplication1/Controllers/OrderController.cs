@@ -44,12 +44,22 @@ namespace WebApplication1.Controllers
             return RedirectToAction("ConfirmOrder", new { Id = orderId });
         }
 
-        public ActionResult ConfirmOrder(int id)
+        public ActionResult ConfirmOrder(int? id)
         {
             var dishRepository = new DishRepository();
             var orderRepository = new OrderRepository();
 
-            var order = orderRepository.GetById(id);
+            if (id == null)
+            {
+                return View();
+            }
+
+            var order = orderRepository.GetById(id.Value);
+
+            if (order == null)
+            {
+                return View();
+            }
 
             var confirmModel = new ConfirmOrderModel();
             confirmModel.Email = order.Email;

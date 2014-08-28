@@ -6,12 +6,12 @@ namespace WebApplication1.Persistance
 {
     public class DishRepository
     {
-         private readonly List<Dish> _dishes = new List<Dish>
+         private readonly DishList _dishes = new DishList
              {
-                 new Dish { Id = 1, Name = "Dagens pizza", Price = 55.0m},
-                 new Dish { Id = 2, Name = "Dagens pasta", Price = 49.0m},
-                 new Dish { Id = 3, Name = "Sallad", Price = 50.0m},
-                 new Dish { Id = 4, Name = "Kebabtallrik", Price = 59.0m},
+                 { 1, "Dagens pizza", 55.0m},
+                 { 2, "Dagens pasta", 49.0m},
+                 { 3, "Sallad", 50.0m},
+                 { 4, "Kebabtallrik", 59.0m},
              };
 
         public List<Dish> GetAll()
@@ -22,6 +22,14 @@ namespace WebApplication1.Persistance
         public Dish GetById(int id)
         {
             return _dishes.FirstOrDefault(d => d.Id == id);
+        }
+    }
+
+    public class DishList : List<Dish>
+    {
+        public void Add(int id, string name, decimal price)
+        {
+            Add(new Dish { Id = id, Name = name, Price = price });
         }
     }
 }
