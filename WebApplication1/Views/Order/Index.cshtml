@@ -1,0 +1,51 @@
+﻿@model WebApplication1.Models.OrderViewModel
+
+<h2>Order</h2>
+
+<h3>Meny</h3>
+
+@using (Html.BeginForm("Index", "Order", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+    <ul class="list-unstyled">
+
+        <li>
+            <div class="col-md-2 inline">@Html.LabelFor(x => x.Dishes[0].OrderedQty)</div>
+            <div class="col-md-5 inline">@Html.LabelFor(x => x.Dishes[0].Name)</div>
+            <div class="col-md-2 inline">@Html.LabelFor(x => x.Dishes[0].Price)</div>
+            <div class="col-md-3 inline">&nbsp;</div>
+        </li>
+        @for (var i = 0; i < Model.Dishes.Count; i++)
+        {
+            <li>
+                <div class="col-md-2 inline">
+                    @Html.HiddenFor(x => x.Dishes[i].Id)
+                    @Html.TextBoxFor(x => x.Dishes[i].OrderedQty)
+                </div>
+                <div class="col-md-5 inline">
+                    @Model.Dishes[i].Name
+                </div>
+                <div class="col-md-2 inline">
+                    @Model.Dishes[i].Price.ToString("C")
+                </div>
+                <div class="col-md-3 inline">
+                    @Html.ValidationMessageFor(x => x.Dishes[i].OrderedQty)
+                </div>
+            </li>
+        }
+
+    </ul>
+
+    <div>
+        @Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+
+    if (Model.QtyErrorMessage != null)
+    {
+        <div>@Model.QtyErrorMessage</div>
+    }
+
+    <input type="submit" value="Skicka" />
+}

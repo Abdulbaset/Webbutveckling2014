@@ -1,0 +1,16 @@
+﻿@model WebApplication1.Models.ConfirmOrderModel
+
+<h2>Kvittens</h2>
+
+<p>Du beställde:</p>
+
+<ul>
+    @foreach (var dish in Model.OrderedDishes)
+    {
+        <li>@dish.Quantity x @dish.Name</li>
+    }
+</ul>
+
+<p>Totalt pris: @Model.TotalAmount.ToString("C")</p>
+
+<p>Din epost: @Model.Email</p>
