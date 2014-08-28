@@ -25,9 +25,11 @@
                 </div>
                 <div class="col-md-5 inline">
                     @Model.Dishes[i].Name
+                    @Html.HiddenFor(x => x.Dishes[i].Name)
                 </div>
                 <div class="col-md-2 inline">
                     @Model.Dishes[i].Price.ToString("C")
+                    @Html.HiddenFor(x => x.Dishes[i].Price)
                 </div>
                 <div class="col-md-3 inline">
                     @Html.ValidationMessageFor(x => x.Dishes[i].OrderedQty)
