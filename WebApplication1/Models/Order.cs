@@ -15,6 +15,7 @@ namespace WebApplication1.Models
         public int Id { get; set; }
         
         public string Email { get; set; }
+        public bool IsServed { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
 
         public void AddOrderDetail(int id, int quantity)

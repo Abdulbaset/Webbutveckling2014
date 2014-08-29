@@ -27,7 +27,8 @@ go
 create table Orders
 (
 	Id int identity not null primary key,
-	Email nvarchar(100) not null
+	Email nvarchar(100) not null,
+	IsServed bit not null constraint DF_Orders_IsServed default (0)
 )
 go
 

@@ -1,0 +1,14 @@
+﻿@model WebApplication1.Models.Order
+
+<div>
+    <div>Order: @Model.Id</div>
+    <div>Email: @Model.Email</div>
+    <div>
+        <ul>
+            @foreach (var detail in Model.OrderDetails)
+            {
+                <li>@Html.Partial("_OrderDetail", detail)</li>
+            }
+        </ul>
+    </div>
+</div>
