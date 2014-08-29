@@ -116,6 +116,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\DishesController.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderedDish.cs" />
@@ -180,6 +181,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Confirm.cshtml" />
+    <Content Include="Views\Dishes\Create.cshtml" />
+    <Content Include="Views\Dishes\Delete.cshtml" />
+    <Content Include="Views\Dishes\Details.cshtml" />
+    <Content Include="Views\Dishes\Edit.cshtml" />
+    <Content Include="Views\Dishes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
