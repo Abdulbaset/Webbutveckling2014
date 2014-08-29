@@ -5,6 +5,7 @@ namespace WebApplication1.Persistance
 {
     public class LunchDbContext : DbContext
     {
-         public DbSet<Dish> Dishes { get; set; }
+        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
