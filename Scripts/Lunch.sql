@@ -36,7 +36,7 @@ create table OrderDetails
 (
 	Id int identity not null primary key,
 	OrderId int not null foreign key references Orders (Id),
-	DishId int not null,
+	DishId int not null foreign key references Dishes (Id),
 	Quantity int not null
 )
 go

@@ -13,6 +13,9 @@ namespace WebApplication1.Models
         public Order Order { get; set; }
 
         public int DishId { get; set; }
+        [ForeignKey("DishId")]
+        public Dish Dish { get; set; }
+
         public int Quantity { get; set; }
     }
 }

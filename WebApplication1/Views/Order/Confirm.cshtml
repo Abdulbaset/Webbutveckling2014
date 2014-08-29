@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Models.ConfirmOrderModel
+﻿@model WebApplication1.Models.Order
 
 <h2>Kvittens</h2>
 
@@ -11,9 +11,9 @@ else
     <p>Du beställde:</p>
 
     <ul>
-        @foreach (var dish in Model.OrderedDishes)
+        @foreach (var detail in Model.OrderDetails)
         {
-            <li>@dish.Quantity x @dish.Name</li>
+            <li>@detail.Quantity x @detail.Dish.Name</li>
         }
     </ul>
 

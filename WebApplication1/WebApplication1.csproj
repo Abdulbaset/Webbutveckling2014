@@ -120,8 +120,6 @@
     <Compile Include="Models\DishesController.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\OrderedDish.cs" />
-    <Compile Include="Models\ConfirmOrderModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Persistance\LunchDbContext.cs" />

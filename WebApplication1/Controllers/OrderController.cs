@@ -61,16 +61,7 @@ namespace WebApplication1.Controllers
                 return View();
             }
 
-            var confirmModel = new ConfirmOrderModel();
-            confirmModel.Email = order.Email;
-
-            foreach (var detail in order.OrderDetails)
-            {
-                var dish = dishRepository.GetById(detail.DishId);
-                confirmModel.AddDish(dish, detail.Quantity);
-            }
-
-            return View(confirmModel);
+            return View(order);
         }
     }
 }

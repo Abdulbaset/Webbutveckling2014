@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using WebApplication1.Models;
 
 namespace WebApplication1.Persistance
@@ -21,9 +22,11 @@ namespace WebApplication1.Persistance
         {
             using (var context = new LunchDbContext())
             {
-                return context.Orders
-                    .Include("OrderDetails")
+                var firstOrDefault = context.Orders
+                    .Include(o => o.OrderDetails)
+                    .Include(o => o.OrderDetails.Select(d => d.Dish))
                     .FirstOrDefault(o => o.Id == id);
+                return firstOrDefault;
             }
         }
 
@@ -32,7 +35,8 @@ namespace WebApplication1.Persistance
             using (var context = new LunchDbContext())
             {
                 return context.Orders
-                    .Include("OrderDetails")
+                    .Include(o => o.OrderDetails)
+                    .Include(o => o.OrderDetails.Select(d => d.Dish))
                     .Where(o => !o.IsServed)
                     .ToList();
             }

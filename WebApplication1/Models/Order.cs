@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace WebApplication1.Models
 {
@@ -13,7 +14,7 @@ namespace WebApplication1.Models
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
+
         public string Email { get; set; }
         public bool IsServed { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
@@ -24,6 +25,15 @@ namespace WebApplication1.Models
             orderDetail.DishId = id;
             orderDetail.Quantity = quantity;
             OrderDetails.Add(orderDetail);
+        }
+
+        public decimal TotalAmount
+        {
+            get
+            {
+                return OrderDetails
+                    .Sum(d => d.Quantity * d.Dish.Price);
+            }
         }
     }
 }
