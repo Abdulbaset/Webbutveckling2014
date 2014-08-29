@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WebApplication1.Models;
 
@@ -19,6 +20,29 @@ namespace WebApplication1.Persistance
             using (var context = new LunchDbContext())
             {
                 return context.Dishes.FirstOrDefault(d => d.Id == id);
+            }
+        }
+
+        public void CreateDish(Dish dish)
+        {
+            using (var context = new LunchDbContext())
+            {
+                context.Dishes.Add(dish);
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdateDish(Dish dish)
+        {
+            using (var context = new LunchDbContext())
+            {
+                var original = context.Dishes.Find(dish.Id);
+                if (original == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                context.Entry(original).CurrentValues.SetValues(dish);
+                context.SaveChanges();
             }
         }
     }
