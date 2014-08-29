@@ -6,22 +6,20 @@ namespace WebApplication1.Persistance
 {
     public class DishRepository
     {
-         private readonly DishList _dishes = new DishList
-             {
-                 { 1, "Dagens pizza", 55.0m},
-                 { 2, "Dagens pasta", 49.0m},
-                 { 3, "Sallad", 50.0m},
-                 { 4, "Kebabtallrik", 59.0m},
-             };
-
         public List<Dish> GetAll()
         {
-            return _dishes;
+            using (var context = new LunchDbContext())
+            {
+                return context.Dishes.ToList();
+            }
         }
 
         public Dish GetById(int id)
         {
-            return _dishes.FirstOrDefault(d => d.Id == id);
+            using (var context = new LunchDbContext())
+            {
+                return context.Dishes.FirstOrDefault(d => d.Id == id);
+            }
         }
     }
 
