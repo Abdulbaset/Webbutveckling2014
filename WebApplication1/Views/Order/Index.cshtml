@@ -1,60 +1,26 @@
-﻿@model WebApplication1.Models.OrderViewModel
-
-<h2>Order</h2>
+﻿<h2>Order</h2>
 
 <h3>Meny</h3>
 
 <div class="test"></div>
 
-@using (Html.BeginForm("Index", "Order", FormMethod.Post))
-{
-    @Html.ValidationSummary()
+<ul id="dishes-list" class="list-unstyled">
+    <li>
+        <div class="col-md-2 inline">Antal</div>
+        <div class="col-md-5 inline">Namn</div>
+        <div class="col-md-2 inline">Pris</div>
+        <div class="col-md-3 inline">&nbsp;</div>
+    </li>
+</ul>
 
-    <ul class="list-unstyled">
+<div>
+    Email <input type="text" class="email" />
+    <span class="email-validation-message"></span>
+</div>
 
-        <li>
-            <div class="col-md-2 inline">@Html.LabelFor(x => x.Dishes[0].OrderedQty)</div>
-            <div class="col-md-5 inline">@Html.LabelFor(x => x.Dishes[0].Name)</div>
-            <div class="col-md-2 inline">@Html.LabelFor(x => x.Dishes[0].Price)</div>
-            <div class="col-md-3 inline">&nbsp;</div>
-        </li>
-        @for (var i = 0; i < Model.Dishes.Count; i++)
-        {
-            <li>
-                <div class="col-md-2 inline">
-                    @Html.HiddenFor(x => x.Dishes[i].Id)
-                    @Html.TextBoxFor(x => x.Dishes[i].OrderedQty, new { @class="quantity-box"})
-                    <button class="glyphicon glyphicon-plus increase-qty"></button>
-                    <button class="glyphicon glyphicon-minus decrease-qty"></button>
-                </div>
-                <div class="col-md-5 inline">
-                    @Model.Dishes[i].Name
-                    @Html.HiddenFor(x => x.Dishes[i].Name)
-                </div>
-                <div class="col-md-2 inline">
-                    @Model.Dishes[i].Price.ToString("C")
-                    @Html.HiddenFor(x => x.Dishes[i].Price)
-                </div>
-                <div class="col-md-3 inline">
-                    @Html.ValidationMessageFor(x => x.Dishes[i].OrderedQty)
-                </div>
-            </li>
-        }
+<div class="quantity-error-message"></div>
 
-    </ul>
-
-    <div>
-        @Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)
-        @Html.ValidationMessageFor(x => x.Email)
-    </div>
-
-    if (Model.QtyErrorMessage != null)
-    {
-        <div>@Model.QtyErrorMessage</div>
-    }
-
-    <input id="submit" type="submit" value="Skicka" />
-}
+<input id="submit" type="submit" value="Skicka" />
 
 @section scripts
 {

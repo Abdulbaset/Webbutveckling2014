@@ -1,7 +1,7 @@
 ﻿
 $(document).ready(function() {
 
-    $(".increase-qty").click(function(e) {
+    $("#dishes-list").on("click", ".increase-qty", function(e) {
 
         var input = $(this).parent().find(".quantity-box");
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $(".decrease-qty").click(function(e) {
+    $("#dishes-list").on("click", ".decrease-qty", function(e) {
 
         var input = $(this).parent().find(".quantity-box");
 
@@ -45,23 +45,40 @@ $(document).ready(function() {
         "            <li>" +
         "               <div class='col-md-2 inline'>" +
         "                   <input type='hidden'>" +
-        "                   <input type='text' class='quantity-box'>" +
+        "                   <input type='text' class='quantity-box' value='0'>" +
         "                   <button class='glyphicon glyphicon-plus increase-qty'></button>" +
         "                   <button class='glyphicon glyphicon-minus decrease-qty'></button>" +
         "               </div>" +
         "               <div class='col-md-5 inline'>" +
-        "                   <span class='dish-name'></span>" +
+        "                   <span class='dish-name'>Namn</span>" +
         "               </div>" +
         "               <div class='col-md-2 inline'>" +
-        "                   <span class='dish-price'></span>" +
+        "                   <span class='dish-price'>Pris</span>" +
         "               </div>" +
         "               <div class='col-md-3 inline'>" +
         "                   <span class='validation-message'></span>" +
         "               </div>" +
         "           </li>";
 
-    var onGetDishesSuccess = function(data) {
-        
+    var onGetDishesSuccess = function (data) {
+
+        $(".test").text(JSON.stringify(data));
+
+        var dishesList = $("#dishes-list");
+
+        for (var i = 0; i < data.length; i++) {
+
+            var listItem = $(template);
+            dishesList.append(listItem);
+
+            var dish = data[i];
+
+            var nameSpan = $(".dish-name", listItem);
+            nameSpan.text(dish.Name);
+
+            var priceSpan = $(".dish-price", listItem);
+            priceSpan.text(dish.Price);
+        }
     }
 
     var options = {
@@ -75,23 +92,25 @@ $(document).ready(function() {
 
         // validering??
 
+
         // ajax-anropet
-        //var options = {
-        //    type: "POST",
-        //    success: function() {},
-        //    error: function (){},
-        //    data: {
-        //            dishes: [
-        //            {
-        //                id: ...,
-        //                quantity: ...
-        //            }, 
-        //            ...
-        //        ],
-        //        email: $(".email").val()
-        //    }
-        //}
-        //$.ajax("/Order/SubmitOrder", options);
+
+        var data = {
+            email: 'email',
+            dishes: [
+                { id: 1, orderedQty: 2 },
+                { id: 2, orderedQty: 2 }
+            ]
+        }
+
+        var options = {
+            type: "POST",
+            success: function() {},
+            error: function() {},
+            data: data
+        }
+
+        $.ajax("/Order/SubmitOrder", options);
     });
 
 })

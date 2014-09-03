@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Persistance;
@@ -9,9 +10,7 @@ namespace WebApplication1.Controllers
     {
         public ActionResult Index()
         {
-            var orderModel = new OrderViewModel();
-
-            return View(orderModel);
+            return View();
         }
 
         [HttpPost]
@@ -67,7 +66,7 @@ namespace WebApplication1.Controllers
         public ActionResult GetDishes()
         {
             var orderViewModel = new OrderViewModel();
-            var dishes = orderViewModel.Dishes;
+            List<DishViewModel> dishes = orderViewModel.Dishes;
             return Json(dishes, JsonRequestBehavior.AllowGet);
         }
     }
