@@ -39,7 +39,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Submit(SubmitModel model)
+        public ActionResult Submit(SubmitOrderModel model)
         {
             var orderRepository = new OrderRepository();
             var order = new Order();
@@ -56,17 +56,5 @@ namespace WebApplication1.Controllers
 
             return Json(new { orderId, confirmLink = Url.Action("Confirm", new { id = orderId }) });
         }
-    }
-
-    public class SubmitModel
-    {
-        public string Email { get; set; }
-        public List<OrderDetailModel> Dishes { get; set; }
-    }
-
-    public class OrderDetailModel
-    {
-        public int Quantity { get; set; }
-        public int Id { get; set; }
     }
 }

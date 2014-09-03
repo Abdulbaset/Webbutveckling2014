@@ -117,6 +117,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Models\SubmitOrderDetailModel.cs" />
+    <Compile Include="Models\SubmitOrderModel.cs" />
     <Compile Include="Models\DishesController.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
