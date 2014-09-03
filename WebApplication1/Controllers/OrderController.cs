@@ -63,5 +63,12 @@ namespace WebApplication1.Controllers
 
             return View(order);
         }
+
+        public ActionResult GetDishes()
+        {
+            var orderViewModel = new OrderViewModel();
+            var dishes = orderViewModel.Dishes;
+            return Json(dishes, JsonRequestBehavior.AllowGet);
+        }
     }
 }

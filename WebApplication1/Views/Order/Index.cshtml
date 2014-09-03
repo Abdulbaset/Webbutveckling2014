@@ -4,6 +4,8 @@
 
 <h3>Meny</h3>
 
+<div class="test"></div>
+
 @using (Html.BeginForm("Index", "Order", FormMethod.Post))
 {
     @Html.ValidationSummary()
@@ -51,7 +53,7 @@
         <div>@Model.QtyErrorMessage</div>
     }
 
-    <input type="submit" value="Skicka" />
+    <input id="submit" type="submit" value="Skicka" />
 }
 
 @section scripts
