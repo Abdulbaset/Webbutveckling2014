@@ -21,7 +21,9 @@
             <li>
                 <div class="col-md-2 inline">
                     @Html.HiddenFor(x => x.Dishes[i].Id)
-                    @Html.TextBoxFor(x => x.Dishes[i].OrderedQty)
+                    @Html.TextBoxFor(x => x.Dishes[i].OrderedQty, new { @class="quantity-box"})
+                    <button class="glyphicon glyphicon-plus increase-qty"></button>
+                    <button class="glyphicon glyphicon-minus decrease-qty"></button>
                 </div>
                 <div class="col-md-5 inline">
                     @Model.Dishes[i].Name
@@ -50,4 +52,9 @@
     }
 
     <input type="submit" value="Skicka" />
+}
+
+@section scripts
+{
+    <script src="~/Scripts/order.js"></script>
 }
