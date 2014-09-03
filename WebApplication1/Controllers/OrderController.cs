@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Persistance;
@@ -13,39 +12,8 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Index(OrderViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            if (model.Dishes.Sum(x => x.OrderedQty) == 0)
-            {
-                model.QtyErrorMessage = "Fel antal!";
-                return View(model);
-            }
-
-            var orderRepository = new OrderRepository();
-            var order = new Order();
-            order.Email = model.Email;
-            foreach (var orderedDish in model.Dishes)
-            {
-                if (orderedDish.OrderedQty > 0)
-                {
-                    order.AddOrderDetail(orderedDish.Id, orderedDish.OrderedQty);
-                }
-            }
-
-            var orderId = orderRepository.Save(order);
-
-            return RedirectToAction("Confirm", new { Id = orderId });
-        }
-
         public ActionResult Confirm(int? id)
         {
-            var dishRepository = new DishRepository();
             var orderRepository = new OrderRepository();
 
             if (id == null)
@@ -69,5 +37,36 @@ namespace WebApplication1.Controllers
             List<DishViewModel> dishes = orderViewModel.Dishes;
             return Json(dishes, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult Submit(SubmitModel model)
+        {
+            var orderRepository = new OrderRepository();
+            var order = new Order();
+            order.Email = model.Email;
+            foreach (var orderedDish in model.Dishes)
+            {
+                if (orderedDish.Quantity > 0)
+                {
+                    order.AddOrderDetail(orderedDish.Id, orderedDish.Quantity);
+                }
+            }
+
+            var orderId = orderRepository.Save(order);
+
+            return Json(new { orderId, confirmLink = Url.Action("Confirm", new { id = orderId }) });
+        }
+    }
+
+    public class SubmitModel
+    {
+        public string Email { get; set; }
+        public List<OrderDetailModel> Dishes { get; set; }
+    }
+
+    public class OrderDetailModel
+    {
+        public int Quantity { get; set; }
+        public int Id { get; set; }
     }
 }

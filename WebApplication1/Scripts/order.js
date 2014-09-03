@@ -42,9 +42,9 @@ $(document).ready(function() {
     // hämta data
 
     var template = "" +
-        "            <li>" +
+        "            <li class='order-row'>" +
         "               <div class='col-md-2 inline'>" +
-        "                   <input type='hidden'>" +
+        "                   <input type='hidden' class='dish-id'>" +
         "                   <input type='text' class='quantity-box' value='0'>" +
         "                   <button class='glyphicon glyphicon-plus increase-qty'></button>" +
         "                   <button class='glyphicon glyphicon-minus decrease-qty'></button>" +
@@ -60,7 +60,7 @@ $(document).ready(function() {
         "               </div>" +
         "           </li>";
 
-    var onGetDishesSuccess = function (data) {
+    var onGetDishesSuccess = function(data) {
 
         $(".test").text(JSON.stringify(data));
 
@@ -73,6 +73,9 @@ $(document).ready(function() {
 
             var dish = data[i];
 
+            var idInput = $(".dish-id", listItem);
+            idInput.val(dish.Id);
+
             var nameSpan = $(".dish-name", listItem);
             nameSpan.text(dish.Name);
 
@@ -83,34 +86,50 @@ $(document).ready(function() {
 
     var options = {
         type: "GET",
-        success: onGetDishesSuccess,    }
+        success: onGetDishesSuccess,
+    }
 
     $.ajax("/Order/GetDishes", options);
+
+    var onSubmitSuccess = function(data) {
+        $(".test").text(JSON.stringify(data));
+        var anchor = $("<a href=''>Bekräftelse</a>");
+        anchor.attr("href", data.confirmLink);
+        $(".test").append(anchor);
+    }
 
     // skicka data
     $("#submit").click(function() {
 
         // validering??
+        var email = $(".email").val();
 
+        var orderRows = $(".order-row");
 
         // ajax-anropet
 
         var data = {
-            email: 'email',
-            dishes: [
-                { id: 1, orderedQty: 2 },
-                { id: 2, orderedQty: 2 }
-            ]
+            email: email,
+            dishes: []
+        }
+
+        for (var i = 0; i < orderRows.length; i++) {
+            var orderRow = $(orderRows[i]);
+
+            var id = orderRow.find(".dish-id").val();
+            var quantity = orderRow.find(".quantity-box").val();
+
+            data.dishes.push({ id: id, quantity: quantity });
         }
 
         var options = {
             type: "POST",
-            success: function() {},
-            error: function() {},
+            success: onSubmitSuccess,
+            error: function(error) { console.log(error); },
             data: data
         }
 
-        $.ajax("/Order/SubmitOrder", options);
+        $.ajax("/Order/Submit", options);
     });
 
 })
