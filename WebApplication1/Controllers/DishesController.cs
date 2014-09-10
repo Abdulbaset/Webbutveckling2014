@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models;
 using WebApplication1.Persistance;
 
-namespace WebApplication1.Models
+namespace WebApplication1.Controllers
 {
     public class DishesController : Controller
     {
-        private LunchDbContext db = new LunchDbContext();
+        private readonly LunchDbContext _db = new LunchDbContext();
 
         // GET: Dishes
         public ActionResult Index()
         {
-            return View(db.Dishes.ToList());
+            return View(_db.Dishes.ToList());
         }
 
         // GET: Dishes/Details/5
@@ -27,7 +24,7 @@ namespace WebApplication1.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dish dish = db.Dishes.Find(id);
+            Dish dish = _db.Dishes.Find(id);
             if (dish == null)
             {
                 return HttpNotFound();
@@ -50,8 +47,8 @@ namespace WebApplication1.Models
         {
             if (ModelState.IsValid)
             {
-                db.Dishes.Add(dish);
-                db.SaveChanges();
+                _db.Dishes.Add(dish);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +62,7 @@ namespace WebApplication1.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dish dish = db.Dishes.Find(id);
+            Dish dish = _db.Dishes.Find(id);
             if (dish == null)
             {
                 return HttpNotFound();
@@ -82,8 +79,8 @@ namespace WebApplication1.Models
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dish).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(dish).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(dish);
@@ -96,7 +93,7 @@ namespace WebApplication1.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dish dish = db.Dishes.Find(id);
+            Dish dish = _db.Dishes.Find(id);
             if (dish == null)
             {
                 return HttpNotFound();
@@ -109,9 +106,9 @@ namespace WebApplication1.Models
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Dish dish = db.Dishes.Find(id);
-            db.Dishes.Remove(dish);
-            db.SaveChanges();
+            Dish dish = _db.Dishes.Find(id);
+            _db.Dishes.Remove(dish);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +116,7 @@ namespace WebApplication1.Models
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -2,25 +2,33 @@
 
 <h3>Meny</h3>
 
-<div class="test"></div>
+<div class="loading-message">Laddar menyn...</div>
+<div class="order-form" style="display: none;">
 
-<ul id="dishes-list" class="list-unstyled">
-    <li>
-        <div class="col-md-2 inline">Antal</div>
-        <div class="col-md-5 inline">Namn</div>
-        <div class="col-md-2 inline">Pris</div>
-        <div class="col-md-3 inline">&nbsp;</div>
-    </li>
-</ul>
+    <ul id="dishes-list" class="list-unstyled">
+        <li>
+            <div>Antal</div>
+            <div>Namn</div>
+            <div>Pris</div>
+            <div>&nbsp;</div>
+        </li>
+    </ul>
 
-<div>
-    Email <input type="text" class="email" />
-    <span class="email-validation-message"></span>
+    <div>
+        Email <input type="text" class="email" />
+        <span class="email-validation-message"></span>
+    </div>
+
+    <div class="quantity-error-message"></div>
+
+    <div>
+        <div>
+            <input id="submit" type="submit" value="Skicka" />
+        </div>
+        <div class="confirm-message"></div>
+
+    </div>
 </div>
-
-<div class="quantity-error-message"></div>
-
-<input id="submit" type="submit" value="Skicka" />
 
 @section scripts
 {

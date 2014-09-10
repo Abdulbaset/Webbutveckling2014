@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Persistance;
@@ -33,6 +34,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult GetDishes()
         {
+            Thread.Sleep(500);
             var orderViewModel = new OrderViewModel();
             List<DishViewModel> dishes = orderViewModel.Dishes;
             return Json(dishes, JsonRequestBehavior.AllowGet);

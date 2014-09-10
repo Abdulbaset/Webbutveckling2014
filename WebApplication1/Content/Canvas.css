@@ -1,0 +1,9 @@
+﻿.canvas-container {
+    border: 2px solid lightgray;
+    /* ReSharper disable once CssBrowserCompatibility */
+    border-radius: 10px;
+    display: inline-block;
+    overflow: hidden;
+    line-height: 0;
+    background-color: #e9e9e9;
+}

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Canvas</title>
+        <meta charset="utf-8" />
+        <link href="Content/Site.css" rel="stylesheet" />
+        <link href="Content/Canvas.css" rel="stylesheet" />
+        <style>
+            pre {
+                display: inline;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="container">
+            <h1>Canvas-test</h1>
+        </header>
+        <section id="size-tests">
+            <h2>Test av fontstorlek</h2>
+
+            <div style="font-size: 1.6em;">
+                Detta är en text med <pre>font-size</pre> satt till <pre>1.6em</pre>.
+                <div style="font-size: 1.4em;">
+                    Detta är en nästlad text med <pre>font-size</pre> satt till <pre>1.4em</pre>.
+                </div>
+                <div style="font-size: 1.4rem;">
+                    Detta är en nästlad text med <pre>font-size</pre> satt till <pre>1.4rem</pre>.
+                </div>
+            </div>
+            <div style="font-size: 10px;">Detta är en text med <pre>font-size</pre> satt till <pre>10px</pre>.</div>
+            <div style="font-size: 14px;">Detta är en text med <pre>font-size</pre> satt till <pre>14px</pre>.</div>
+            <div style="font-size: 10pt;">Detta är en text med <pre>font-size</pre> satt till <pre>10pt</pre>.</div>
+        </section>
+
+        <section id="main" class="container">
+            <h2>En sida på en rubiks kub!</h2>
+            <div class="canvas-container">
+            </div>
+        </section>
+
+        <script src="Scripts/jquery-2.1.1.js"></script>
+        <script src="Scripts/canvas.js"></script>
+    </body>
+</html>

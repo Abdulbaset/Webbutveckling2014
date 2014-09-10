@@ -46,12 +46,4 @@ namespace WebApplication1.Persistance
             }
         }
     }
-
-    public class DishList : List<Dish>
-    {
-        public void Add(int id, string name, decimal price)
-        {
-            Add(new Dish { Id = id, Name = name, Price = price });
-        }
-    }
 }

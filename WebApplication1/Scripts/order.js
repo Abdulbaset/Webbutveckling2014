@@ -46,8 +46,8 @@ $(document).ready(function() {
         "               <div class='col-md-2 inline'>" +
         "                   <input type='hidden' class='dish-id'>" +
         "                   <input type='text' class='quantity-box' value='0'>" +
-        "                   <button class='glyphicon glyphicon-plus increase-qty'></button>" +
-        "                   <button class='glyphicon glyphicon-minus decrease-qty'></button>" +
+        "                   <button class='increase-qty fa fa-plus'></button>" +
+        "                   <button class='decrease-qty fa fa-minus'></button>" +
         "               </div>" +
         "               <div class='col-md-5 inline'>" +
         "                   <span class='dish-name'>Namn</span>" +
@@ -62,7 +62,7 @@ $(document).ready(function() {
 
     var onGetDishesSuccess = function(data) {
 
-        $(".test").text(JSON.stringify(data));
+        console.log(JSON.stringify(data));
 
         var dishesList = $("#dishes-list");
 
@@ -82,6 +82,9 @@ $(document).ready(function() {
             var priceSpan = $(".dish-price", listItem);
             priceSpan.text(dish.Price);
         }
+
+        $(".loading-message").hide();
+        $(".order-form").show();
     }
 
     var options = {
@@ -92,10 +95,14 @@ $(document).ready(function() {
     $.ajax("/Order/GetDishes", options);
 
     var onSubmitSuccess = function(data) {
-        $(".test").text(JSON.stringify(data));
+
+        console.log(JSON.stringify(data));
+
         var anchor = $("<a href=''>Bekräftelse</a>");
         anchor.attr("href", data.confirmLink);
-        $(".test").append(anchor);
+
+        $(".confirm-message").empty();
+        $(".confirm-message").append(anchor);
     }
 
     // skicka data
