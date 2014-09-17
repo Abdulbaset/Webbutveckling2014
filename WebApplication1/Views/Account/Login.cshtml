@@ -1,0 +1,19 @@
+﻿@model WebApplication1.Controllers.LoginModel
+
+<h2>Login!</h2>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <div>
+            <span>@Html.LabelFor(m => m.EmployeeNumber)</span>
+            @Html.TextBoxFor(m => m.EmployeeNumber)
+        </div>
+        <div>
+            <span>@Html.LabelFor(m => m.Password)</span>
+            @Html.TextBoxFor(m => m.Password)
+        </div>
+
+        <input type="submit" value="Logga in"/>
+    }
+</div>

@@ -15,6 +15,17 @@
                     <li>@Html.ActionLink("Beställ mat", "Index", "Order")</li>
                     <li>@Html.ActionLink("Maträtter", "Index", "Dishes")</li>
                     <li>@Html.ActionLink("Beställningar", "Index", "Admin")</li>
+
+                    @if (Session["role"] == null)
+                    {
+                        <li>@Html.ActionLink("Logga in", "Login", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Logga ut", "Logout", "Account")</li>
+                        <li>Hej, @Session["role"]!</li>
+                    }
+
                     <li><a href="/canvas.html">Canvas!</a></li>
                 </ul>
             </div>
