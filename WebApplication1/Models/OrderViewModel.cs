@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using WebApplication1.Persistance;
+using WebApplication1.Persistence;
 
 namespace WebApplication1.Models
 {

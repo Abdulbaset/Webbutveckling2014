@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using WebApplication1.Models;
 
-namespace WebApplication1.Persistance
+namespace WebApplication1.Persistence
 {
     public class LunchDbContext : DbContext
     {

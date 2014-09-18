@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebApplication1.Authentication;
 using WebApplication1.Models;
-using WebApplication1.Persistance;
+using WebApplication1.Persistence;
 
 namespace WebApplication1.Controllers
 {

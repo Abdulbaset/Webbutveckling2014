@@ -128,15 +128,15 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Persistance\LunchDbContext.cs" />
-    <Compile Include="Persistance\OrderRepository.cs" />
+    <Compile Include="Persistence\LunchDbContext.cs" />
+    <Compile Include="Persistence\OrderRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DishViewModel.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
-    <Compile Include="Persistance\DishRepository.cs" />
+    <Compile Include="Persistence\DishRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

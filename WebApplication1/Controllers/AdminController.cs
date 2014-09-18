@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using WebApplication1.Persistance;
+using WebApplication1.Persistence;
 
 namespace WebApplication1.Controllers
 {
