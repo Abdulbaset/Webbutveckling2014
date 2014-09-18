@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.Security;
 using WebApplication1.Authentication;
 using WebApplication1.Models;
 using WebApplication1.Persistence;

@@ -87,12 +87,10 @@ $(document).ready(function() {
         $(".order-form").show();
     }
 
-    var options = {
+    $.ajax("/Order/GetDishes", {
         type: "GET",
         success: onGetDishesSuccess,
-    }
-
-    $.ajax("/Order/GetDishes", options);
+    });
 
     var onSubmitSuccess = function(data) {
 

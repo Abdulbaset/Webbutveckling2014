@@ -10,22 +10,28 @@ namespace WebApplication1.Authentication
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var role = (string)filterContext.HttpContext.Session["role"];
-            
-            if (!IsAuthenticated(role))
+            if (!IsAuthenticated(filterContext))
             {
                 filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary
                         {
-                            {"controller", "Account"},
-                            {"action", "Login"}
-
+                            { "controller", "Account" },
+                            { "action", "Login" }
                         });
             }
         }
 
-        private bool IsAuthenticated(string role)
+        private bool IsAuthenticated(ActionExecutingContext filterContext)
         {
+            var session = filterContext.HttpContext.Session;
+
+            if (session == null)
+            {
+                return false;
+            }
+
+            var role = (string)session["role"];
+
             if (string.IsNullOrWhiteSpace(role))
             {
                 return false;
@@ -36,13 +42,17 @@ namespace WebApplication1.Authentication
                 return true;
             }
 
-            if (Roles.Split(',').Contains(role))
+            if (Roles.Split(',').Select(Normalize).Contains(Normalize(role)))
             {
                 return true;
             }
 
             return false;
+        }
 
+        private string Normalize(string text)
+        {
+            return text.Trim().ToUpperInvariant();
         }
     }
 }

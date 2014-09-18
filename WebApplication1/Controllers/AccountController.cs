@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -29,13 +25,5 @@ namespace WebApplication1.Controllers
             Session.Remove("role");
             return RedirectToAction("Index", "Order");
         }
-    }
-
-    public class LoginModel
-    {
-        [DisplayName("Anst.nr")]
-        public int EmployeeNumber { get; set; }
-        [DisplayName("Lösenord")]
-        public string Password { get; set; }
     }
 }
